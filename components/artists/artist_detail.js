@@ -29,10 +29,10 @@ export function getArtistDetailComponent({
                             <h5 class="card-title">Secondary Images</h5>
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <img src="${artistImagesSecondaryOne}" class="img-thumbnail w-100" alt="Secondary Image 1">
+                                    <img src="./${artistImagesSecondaryOne}" class="img-thumbnail w-100" alt="Secondary Image 1">
                                 </div>
                                 <div class="col-6">
-                                    <img src="${artistImagesSecondaryTwo}" class="img-thumbnail w-100" alt="Secondary Image 2">
+                                    <img src="./${artistImagesSecondaryTwo}" class="img-thumbnail w-100" alt="Secondary Image 2">
                                 </div>
                             </div>
                         </div>
