@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Detail</title>
+    <script type="module" src="./assets/js/app.js"></script>
+</head>
+<body>
+
+    <div class="container mainContainer col-xl-8 col-lg-10 col-md-12 col-sm-12">
+    
+        <header class="sticky-top" id="header"></header>
+        <div class="main2" id="hero"></div>
+      
+        <div class="header-container">
+            <h1 id="header-title" class="header-title"></h1>
+        </div>
+        
+        <main id="main" class="container-fluid">
+            <div id="newsDetailContainer"></div>   
+        </main>
+      
+        <footer id="footer"></footer>
+    
+    </div>
+
+    <script type="module">
+        import { getArtists } from "./db/artists_db.js";
+        import { getNews } from "./db/news_db.js";
+        import { getNewsDetailComponent } from "./components/blog/news_detail.js";
+        import { setPageTitle } from "./assets/js/utils.js";
+
+        setPageTitle("Full news");
+
+        const artists = getArtists();
+        const news = getNews();
+
+        const newsDetailContainer = document.getElementById("newsDetailContainer");
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsIdFromURL = urlParams.get('newsId');
+
+        const newsFound = news.find(newElement => newElement.id.toString() === newsIdFromURL.toString());
+
+        if(!newsFound){
+            alert("No existe tal noticia");
+            window.location.href = "/";
+        } else {
+
+            const artists = getArtists();
+            const artist = artists.find(artist => artist.id === newsFound.artistId);
+
+            const newsDetailComponent = getNewsDetailComponent({
+                newsArtistId: artist.id,
+                newsArtistName: artist.name,
+                newsImageCover: artist.images[0],
+                newsTitle: newsFound.title,
+                newsFullNews: newsFound.fullNews,
+                newsImagesSecondaryOne: artist.images[1],
+                newsImagesSecondaryTwo: artist.images[2],
+                newsAuthor: newsFound.author,
+                newsDate: newsFound.date,
+                newsLocation: newsFound.location,
+                newsCountry: newsFound.country
+            });
+
+            newsDetailContainer.innerHTML += newsDetailComponent;
+        }
+
+    </script>
+
+</body>
+</html>

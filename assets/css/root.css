@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+/* Print styles */
+* {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+    color-adjust: exact !important;                 /* Firefox 48 – 96 */
+    print-color-adjust: exact !important;           /* Firefox 97+, Safari 15.4+ */
+}
+
+:root {
+    --green: #98bd5e;
+	--grey: #a2a2a2;
+}
+
+/****************************
+/* Bootstrap styles        
+/***************************/
+
+/* Variables para el tema claro */
+[data-bs-theme='light'] {
+    --bs-body-bg: #a2abb3; /* Color de fondo principal */
+    --bs-gray-100: #b7bdc4; /* Otros grises suaves si es necesario */
+}
+
+/* Variables para el tema oscuro */
+[data-bs-theme='dark'] {
+    --bs-body-bg: #212529; /* Ejemplo de color de fondo principal para el tema oscuro */
+    --bs-gray-100: #343a40; /* Ejemplo de otro color gris suave para el tema oscuro */
+}
+
+
+a {
+	text-decoration: none;
+	
+}
+
+ul {
+    list-style: none;
+}
+
+
+p {
+	margin: 0;
+}
+
+
+body {
+	height: 100vh;
+	width: 100%;
+}
+
+.linkActive {
+	background-color: lightgrey;
+}
+
+.mainContainer {
+	display: flex;
+	flex-direction: column;
+	align-self: center; 
+	max-width: 1200px;
+}
+
+main {
+    /* width: 1400px; */
+	background-color: var(--bs-gray-100);
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	padding: 2em;
+	border-radius: 10px;
+}
+
+.main2 {
+	margin-top: 2em;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	border-radius: 10px;
+	width: 100%;
+}
+
+
+/****************************
+/* Links and buttons       
+/***************************/
+
+.textHeading {
+	color: var(--green);
+}
+
+.textHeadingLink {
+	color: var(--green);
+}
+
+.textHeadingLink:hover {
+	color: var(--green);
+	filter: brightness(1.5);
+}
+
+.textLink {
+	color: var(--grey);
+}
+
+.textLink:hover {
+	color: var(--grey);
+	filter: brightness(1.5);
+}
+
+.ticketBtn {
+	background-color: var(--green);
+}
+
+.ticketBtn:hover {
+	background-color: var(--green);
+	filter: brightness(1.1);
+}
+
+.card-link {
+    background: rgba(255, 255, 255, 0.205);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.137);
+    transition: all 0.3s ease;
+}
+
+.card-link:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/****************************
+/* Header and titles        
+/***************************/
+
+
+.bg-hero {
+    background-image: url('./../../assets/img/wallpapers/concert.avif');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding-top: 50px;
+    padding-bottom: 50px;
+	height: 405px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em 0em;
+	margin: 0 10%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.header-title {
+    position: relative;
+    padding: 0 20px;
+    font-size: 2rem;
+    white-space: nowrap;
+    z-index: 1;
+    background-color: var(--bs-body-bg);
+}
+
+.header-title::before,
+.header-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100vw;
+    height: 2px;
+    background-color: var(--bs-gray-100);
+    z-index: 0; 
+}
+
+.header-title::before {
+    right: 100%; 
+    margin-right: 20px;
+}
+
+.header-title::after {
+    left: 100%;    
+	margin-left: 20px;
+}
+
+#header {
+    background-color: var(--bs-body-bg);
+}

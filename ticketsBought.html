@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <script type="module" src="./assets/js/app.js"></script>
+    <link rel="stylesheet" href="./assets/css/tickets.css">
+</head>
+<body>
+    <div class="container mainContainer col-xl-8 col-lg-10 col-md-12 col-sm-12">
+        <header class="sticky-top" id="header"></header>
+        <div class="main2" id="hero"></div>
+        <div class="header-container">
+            <h1 id="header-title" class="header-title"></h1>
+        </div>
+        <main id="main" class="container-fluid">
+            <div class="d-flex justify-content-end py-3 px-5">
+                <button class="btn ticketBtn" onclick="printContent()"><i class="fa-solid fa-print"></i></button>
+            </div>
+            <div id="ticketsBoughtContainer"></div>
+        </main>
+        <footer id="footer"></footer>
+    </div>
+
+    <script>
+       function printContent() {
+            var printContents = document.getElementById("ticketsBoughtContainer").innerHTML;
+            var originalContents = document.body.innerHTML;
+            
+            // Crear un contenedor temporal para imprimir
+            var printContainer = document.createElement('div');
+            printContainer.innerHTML = printContents;
+            printContainer.classList.add('d-flex', 'flex-column', 'gap-5');
+            
+            document.body.innerHTML = printContainer.outerHTML;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+
+    </script>
+
+    <script type="module">
+        import { getEvents } from "./db/events_db.js";
+        import { getArtists } from "./db/artists_db.js";
+        import { getTicketBoughtComponent } from "./components/tickets/ticket_bought.js";
+        import { setPageTitle } from "./assets/js/utils.js";
+
+        setPageTitle("Your tickets");
+
+        const events = getEvents();
+        const artists = getArtists();
+
+        const ticketsContainer = document.getElementById("ticketsBoughtContainer");
+
+        const tickets = window.localStorage.getItem("fanTicket");
+        const ticketsParsed = JSON.parse(tickets);
+
+        if (!ticketsParsed) {
+            window.location.href = "/";
+        }
+
+        if (ticketsParsed) {
+            ticketsParsed.forEach(ticket => {
+                for (let i = 0; i < +ticket.quantity; i++) {
+                    const eventFound = events.find(event => event.id == ticket.eventId);
+                    const artistFound = artists.find(artist => artist.id == eventFound.artistId);
+                    
+                    const ticketBoughtCardComponent = getTicketBoughtComponent({
+                        artistName: artistFound.name,
+                        artistImageCover: artistFound.images[0],
+                        eventTourName: eventFound.tourName,
+                        eventDay: eventFound.day,
+                        eventMonth: eventFound.month,
+                        eventYear: eventFound.year,
+                        eventVenue: eventFound.venue,
+                        eventCity: eventFound.city,
+                        eventDayOfWeek: eventFound.dayOfWeek,
+                        eventDoorsOpen: eventFound.doorsOpen,
+                        eventTimeStart: eventFound.timeStart,
+                        eventTimeEnd: eventFound.timeEnd,
+                        eventTicketId: eventFound.ticketId
+                    });
+
+                    ticketsContainer.innerHTML += ticketBoughtCardComponent;    
+                }
+            });
+
+            // Eliminar registros del localstorage después de generar los tickets
+            window.localStorage.removeItem("fanTicket");
+        }
+    
+    </script>
+
+</body>
+</html>
