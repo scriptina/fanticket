@@ -13,7 +13,7 @@ export function getArtistDetailComponent({
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
-                        <img src="${artistImageCover}" class="card-img-top" alt="${artistName}">
+                        <img src="./${artistImageCover}" class="card-img-top" alt="${artistName}">
                         <div class="card-body p-5">
                             <h2 class="card-title textHeading">${artistName}</h2>
                             <p class="card-text">Genre: ${artistGenre}</p>

@@ -18,7 +18,7 @@ export function getTicketCardComponent({
                 <div class="row g-0">
                     <div class="col-md-4">
                         <div style="height: 200px; overflow: hidden; position: relative;">
-                            <img src="${artistImageCover}" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0;" alt="${artistName}" />
+                            <img src="./${artistImageCover}" class="img-fluid rounded-start w-100 h-100" style="object-fit: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0;" alt="${artistName}" />
                         </div>
                     </div>
                     <div class="col-md-5">
